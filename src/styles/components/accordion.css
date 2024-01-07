@@ -1,0 +1,45 @@
+.accordion {
+  .a-btn {
+    @apply relative cursor-pointer flex items-center justify-between border-t-2 mb-0;
+
+    * {
+      pointer-events: none !important;
+    }
+
+    &:after {
+      content: "+";
+      display: flex;
+      font-size: 4rem;
+      line-height: 1;
+      height: 6rem;
+      align-items: center;
+    }
+  }
+
+  .a-panel {
+    width: 100%;
+    opacity: 0;
+    height: auto;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.45s ease-in-out;
+  }
+
+  .a-container {
+    &.active {
+      .a-panel {
+        opacity: 1;
+        height: auto;
+        padding: 0 0 2rem 0;
+        max-height: 300vh;
+        max-height: 300svh;
+      }
+
+      .a-btn {
+        &:after {
+          content: "‒";
+        }
+      }
+    }
+  }
+}

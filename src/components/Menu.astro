@@ -1,0 +1,67 @@
+---
+const { items } = Astro.props;
+---
+<style>
+
+    nav{
+        @apply 
+            fixed 
+            flex 
+            flex-col 
+            top-0 
+            left-0 
+            w-full
+            h-full
+            bg-neutral-900
+            px-2
+            py-6
+            transition-transform
+            duration-500
+            z-[99]
+
+            xg:relative 
+            xg:w-auto
+            xg:h-auto
+            xg:bg-transparent
+            xg:px-0
+            xg:py-0
+            xg:flex-row 
+            xg:justify-between;
+
+    }
+
+    a{
+        @apply 
+            text-h1 
+            mb-1 
+            xg:text-body
+            xg:mb-0
+    }
+
+    @media ( width <= theme('screens.xg') ){
+
+        nav{
+            transform: translateX(100%);
+        }
+
+        body.menu-in{
+
+            nav{
+                transform: translateX(0);
+            }
+
+        }
+    }
+
+
+</style>
+
+<nav>
+    {
+        items.map( item =>(
+        <a href={ item[1] } class={ item[2] }  >
+            { item[0] }
+        </a>
+        ) )
+    }
+</nav>

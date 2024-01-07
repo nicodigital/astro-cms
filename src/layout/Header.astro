@@ -1,0 +1,26 @@
+---
+import Brand from "../components/Brand.astro";
+import Burger from "../components/Burger.astro";
+import Menu from "../components/Menu.astro";
+const baseUrl = import.meta.env.BASE_URL;
+---
+<header class="container row py-4 mb-4" >
+    <div class="col-span-2 sm:col-span-3 md:col-span-3">
+        <Brand width="w-40% md:w-full xg:w-50%" />
+    </div>
+    <div class="col-span-2 sm:col-span-3 md:col-[7/10]">
+
+        <Menu items={
+            [
+                ['Home', '/' ],
+                ['About', '/about'],
+                ['Services', '#cards'],
+                ['Modal','demo','m-link'],
+                ['Contact', '#contacto']
+            ]
+        } />
+
+        <Burger/>
+        
+    </div>
+</header>

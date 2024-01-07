@@ -1,0 +1,47 @@
+/*@font-face {
+font-family: 'Akkurat';
+src: url('../../Akkurat-Bold.woff2') format('woff2'),
+    url('../../Akkurat-Bold.woff') format('woff');
+font-weight: bold;
+font-style: normal;
+}*/
+
+body{
+    @apply
+    text-body
+    xg:text-[1.8rem]
+    3xl:text-[2rem]
+}
+
+p{
+    @apply text-pretty ;
+}
+
+.txt-big{
+
+    @apply 
+        text-big 
+        xl:text-[5rem] 
+        3xl:text-[7rem] 
+        5xl:text-[8rem] 
+        font-bold
+        text-balance
+
+}
+
+.h1{
+  @apply 
+    text-h1 
+    xl:text-[4rem]
+    3xl:text-[4.3rem]
+    text-balance
+}
+
+.h2{
+    @apply 
+        text-h2 
+        xg:text-[3.3rem]
+        3xl:text-[3.5rem]
+        text-balance
+}
+

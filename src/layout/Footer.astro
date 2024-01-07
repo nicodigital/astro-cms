@@ -1,0 +1,19 @@
+---
+import Brand from "../components/Brand.astro";
+import Gotop from "../components/Gotop.astro";
+import { getHoy } from '../js/gethoy.js'
+const hoy = getHoy();
+
+---
+<footer class="container row bg-neutral-800 pt-5 pb-10 xg:py-7" >
+    <div class="col-[1/7] xg:col-[1/7]" >
+        <Brand width="w-40% md:w-full xg:w-25%" alt="Gridbox" ></Brand>
+    </div>
+    <div class="col-[7/13] xg:col-[7/11] flex items-center">
+        {`© ${hoy}`}
+    </div>
+    <div class="sm:col-[2/12] xg:col-[11/13] flex justify-end">
+        <Gotop/>
+    </div>
+</footer>
+

@@ -1,0 +1,19 @@
+---
+import Card from "../components/Card.astro";
+import getPosts from '../data/posts.json'
+
+const posts = Object.values(getPosts);
+
+---
+
+
+
+<div id="cards" class="grid sm:grid-cols-2 xg:grid-cols-3 gap-3">
+
+	{
+		posts.map( post => (
+			<Card post={post} />
+		))
+	}
+
+</div>

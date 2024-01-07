@@ -1,0 +1,46 @@
+---
+import "../styles/components/accordion.css";
+const { content } = Astro.props;
+---
+
+<div class="accordion">
+  {
+    content.map((item) => (
+      <div class="a-container">
+        <p class="a-btn">{item.title}</p>
+        <div class="a-panel">
+          <p>{item.desc}</p>
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  function handleAccordionClick(e) {
+    const accordionContainer = e.target.closest(".accordion");
+    if (!accordionContainer) return;
+
+    if (e.target.matches(".a-btn")) {
+      e.preventDefault();
+      const accordionItem = e.target.closest(".a-container");
+
+      const allAccordionItems =
+        accordionContainer.querySelectorAll(".a-container");
+      allAccordionItems.forEach(function (item) {
+        if (item !== accordionItem) {
+          item.classList.remove("active");
+        }
+      });
+
+      accordionItem.classList.toggle("active");
+    }
+  }
+
+  function initializeAccordion() {
+    document.addEventListener("click", handleAccordionClick);
+  }
+
+  document.addEventListener("DOMContentLoaded", initializeAccordion);
+  document.addEventListener("astro:after-swap", initializeAccordion);
+</script>

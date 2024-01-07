@@ -1,0 +1,54 @@
+---
+import Layout from "../layout/Layout.astro";
+import Cards from "../layout/Cards.astro";
+import Grid from "../components/Grid.astro";
+// import Form from '../components/Form.astro'
+import NetliForm from '../components/NetliForm.astro'
+
+/* Accordion */
+import Accordion from "../components/Accordion.astro"
+import getAccData from '../data/accordion.json'
+const accData = Object.values(getAccData);
+
+/* Slider */
+import Slider from "../components/Slider.astro";
+import getSlides from "../data/slides.json"
+const Slides = Object.values(getSlides);
+
+---
+<Layout 
+    title="AstroBox"
+    claim="El nuevo framework de maquetación de sitios de I+D"
+    description="El nuevo framework de maquetación de sitios de I+D"
+    >
+  <Grid />
+
+  <div class="section">
+    <Slider slides={Slides}  />
+  </div>
+
+  <div class="container section-b">
+    <Cards/>
+  </div>
+  
+  <div class="container row">
+    <div class="col-[1/13] md:col-[1/6]">
+      <Accordion content={accData} />
+    </div>
+    <div class="col-[1/13] md:col-[7/12]">
+      <Accordion content={accData} />
+    </div>
+  </div>
+
+  <div id="contacto" class="container row section">
+      <div class="col-[1/13] md:col-[1/6]">
+        <h2 class="h2">
+          Contacto
+        </h2>
+      </div>
+      <div class="col-[1/13] md:col-[7/12]">
+        <NetliForm/>
+      </div>
+  </div>
+
+</Layout>

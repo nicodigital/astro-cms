@@ -1,0 +1,59 @@
+---
+import "@fontsource/inconsolata";
+import { ViewTransitions } from "astro:transitions";
+import "../styles/global.css";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import Modal from "../components/Modal.astro";
+import Seo from "../components/Seo.astro";
+
+const {
+  title = "Título de 65 caracteres",
+  claim = "Frase Coooool!",
+  description = "Descripción de 150 caracteres",
+  image,
+  robots,
+} = Astro.props;
+
+// Check Thanks
+const getForm = Astro.url.searchParams.get("form")! || "";
+console.log(getForm);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <Seo {title} {claim} {description} {image} {robots} />
+    <meta http-equiv="cleartype" content="on" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <ViewTransitions />
+  </head>
+  <body id="top">
+    <Header />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+
+    <Modal name="demo" show="off" type="">
+      <h2 class="h1 text-center">Este es el mejor modal del mundo!</h2>
+    </Modal>
+
+    <script>
+      import "../js/globals";
+    </script>
+    
+  </body>
+</html>
