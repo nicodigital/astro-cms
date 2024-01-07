@@ -38,7 +38,7 @@ const { items } = Astro.props;
             xg:mb-0
     }
 
-    @media ( width <= theme('screens.xg') ){
+    @media( max-width: theme('screens.xg') ) {
 
         nav{
             transform: translateX(100%);
