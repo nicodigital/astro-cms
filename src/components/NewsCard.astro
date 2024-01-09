@@ -1,0 +1,14 @@
+---
+const {title, description, href, thumb } = Astro.props;
+
+---
+<a {href} class="card bg-neutral-800 text-white px-2 py-3 flex flex-col gap-2 rounded-xl">
+    <img class="rounded-xl opacity-30" src={thumb} alt='' loading='lazy' decoding='async' />
+    <h2 class="h2 font-bold" >
+        {title}
+    </h2>
+    <p>
+        {description.slice(0,150)}...
+    </p>
+    
+</a>

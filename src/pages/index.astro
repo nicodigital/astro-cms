@@ -1,36 +1,105 @@
 ---
+// export const prerender = false;
+
 import Layout from "../layout/Layout.astro";
 import Cards from "../layout/Cards.astro";
+// import CardProperty from "../components/CardProperty.astro";
+import NewsCard from "../components/NewsCard.astro";
 import Grid from "../components/Grid.astro";
-// import Form from '../components/Form.astro'
-import NetliForm from '../components/NetliForm.astro'
+import NetliForm from "../components/NetliForm.astro";
+
+const News = await Astro.glob("./news/*.md");
 
 /* Accordion */
-import Accordion from "../components/Accordion.astro"
-import getAccData from '../data/accordion.json'
+import Accordion from "../components/Accordion.astro";
+import getAccData from "../data/accordion.json";
 const accData = Object.values(getAccData);
 
-/* Slider */
-import Slider from "../components/Slider.astro";
-import getSlides from "../data/slides.json"
-const Slides = Object.values(getSlides);
+/* Button */
+import Button from "../components/Button.astro";
 
+/* Slider */
+// import Slider from "../components/Slider.astro";
+// import getSlides from "../data/slides.json";
+// const Slides = Object.values(getSlides);
+
+import NeltySlider from '../components/NetlySlider.astro';
+const slides = await Astro.glob('./slides/*.md')
+
+/* Properties from Strapi */
+// const getProperties = await fetch(
+//   "http://localhost:1337/api/properties?populate=Thumb"
+// );
+// const properties = await getProperties.json();
+// console.log(properties);
 ---
-<Layout 
-    title="AstroBox"
-    claim="El nuevo framework de maquetación de sitios de I+D"
-    description="El nuevo framework de maquetación de sitios de I+D"
-    >
+
+<Layout
+  title="AstroBox"
+  claim="El nuevo framework de maquetación de sitios de I+D"
+  description="El nuevo framework de maquetación de sitios de I+D"
+>
   <Grid />
 
   <div class="section">
-    <Slider slides={Slides}  />
+    <NeltySlider {slides} />
   </div>
 
-  <div class="container section-b">
-    <Cards/>
+  <div class="container section-b mb-10">
+    <div class="row pt-10">
+      <div class="col-[1/13] text-center">
+        <h2 class="h1 font-bold mb-6">Buttons</h2>
+      </div>
+      <div class="col-[5/7]">
+        <Button type="a" href="https://google.com" style="solid w-full mx-auto">
+          Botón sólido
+        </Button>
+      </div>
+      <div class="col-[7/9]">
+        <Button id="boton" type="button" style="outline w-full mx-auto">
+          Botón outline
+        </Button>
+      </div>
+    </div>
   </div>
-  
+
+  <div class="container section">
+    <h1 class="h1 text-center mb-4">News from Netlify CMS</h1>
+    <div class="grid md:grid-cols-3 gap-2">
+      {
+        News.map((artilce) => (
+          <NewsCard
+            title={artilce.frontmatter.title}
+            description={artilce.frontmatter.description}
+            href={artilce.frontmatter.extUrl}
+            thumb={artilce.frontmatter.thumb}
+          />
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- <div class="container section">
+    <h1 class="h1 text-center mb-4">Properties from Strapi</h1>
+    <div class="grid md:grid-cols-3 gap-2"> -->
+  <!-- {
+        properties.data.map((prop) => (
+          <CardProperty
+            id={prop.id}
+            Title={prop.attributes.Title}
+            Description={prop.attributes.Description}
+            Thumb={prop.attributes.Thumb.data.attributes.url} 
+          />
+        ))
+      } -->
+  <!-- </div>
+  </div> -->
+
+  <div class="container section-b">
+    <h2 class="h1 text-center mb-4">Post form local Json</h2>
+    <Cards />
+  </div>
+
   <div class="container row">
     <div class="col-[1/13] md:col-[1/6]">
       <Accordion content={accData} />
@@ -41,14 +110,11 @@ const Slides = Object.values(getSlides);
   </div>
 
   <div id="contacto" class="container row section">
-      <div class="col-[1/13] md:col-[1/6]">
-        <h2 class="h2">
-          Contacto
-        </h2>
-      </div>
-      <div class="col-[1/13] md:col-[7/12]">
-        <NetliForm/>
-      </div>
+    <div class="col-[1/13] md:col-[1/6]">
+      <h2 class="h2">Contacto</h2>
+    </div>
+    <div class="col-[1/13] md:col-[7/12]">
+      <NetliForm />
+    </div>
   </div>
-
 </Layout>

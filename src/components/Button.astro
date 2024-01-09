@@ -1,0 +1,38 @@
+---
+const { id, type, href, style } = Astro.props
+
+---
+
+<style>
+
+    .btn{
+
+        @apply block py-1 px-3 text-white text-center rounded-md transition-all;
+
+        &-solid{
+             @apply bg-neutral-800  hover:bg-neutral-600; 
+        }
+
+        &-outline{
+            @apply border-white border-[1px] hover:text-neutral-900 hover:bg-white/75 hover:border-white/0
+        }
+
+    }
+
+</style>
+
+{
+    type === 'a' && (
+        <a {id} {href} class={`btn btn-${style}`}  >
+            <slot/>
+        </a>
+    )
+}
+
+{
+    type === 'button' && (
+        <button {id} class={`btn btn-${style}`}  >
+            <slot/>
+        </button>
+    )
+}
